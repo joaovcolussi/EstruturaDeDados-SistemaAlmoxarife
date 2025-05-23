@@ -99,3 +99,24 @@ Processar Alertas de Reestoque: Permite ao utilizador "processar" um alerta (o m
 #### Auditoria e Histórico:
 
 Ver Histórico de Operações: Apresenta um log cronológico detalhado de todas as operações significativas realizadas no sistema. Isto inclui cadastros de produtos, entradas e saídas de estoque, e a criação ou processamento de alertas.
+
+### Justificativa da Escolha de Cada Estrutura de Dados
+
+Para construir nosso sistema de almoxarifado, pensamos com carinho em como organizar as informações. A ideia era usar as ferramentas certas para cada tarefa, e aqui explicamos o porquê de cada escolha:
+
+#### Dicionários (`dict`): Nossos Coringas pra Achar Tudo Rápido
+ A gente usou dicionários pra duas paradas chave:
+* `produtos_cadastrados`: Pensa nisso como um fichário onde cada produto tem sua pasta, identificada por um ID único. Se preciso achar os detalhes de um produto, vou direto na pasta dele pelo ID. Sem estresse, sem procurar um por um. É agilidade pura pra cadastrar, consultar ou atualizar as infos.
+* `estoque`: Aqui, o dicionário é tipo o painel de controle das quantidades. Cada ID de produto aponta pra quantos itens dele a gente tem. Entrou mercadoria? Saiu? A gente atualiza o número ali e pronto. Pra controlar entrada e saída, não tem nada mais direto.
+
+#### Listas (`list`): O Histórico Organizado dos Acontecimentos
+* A `historico_operacoes` é, basicamente, o nosso log de tudo que rolou: quem cadastrou o quê, o que entrou, o que saiu, qual alerta pintou. Cada evento vira uma linha nesse "caderno". Listas são boas pra isso porque a gente vai adicionando as novas informações no final, e tudo fica na ordem certinha, do mais antigo pro mais novo.
+
+#### Tuplas (`tuple`): Registros que Não Mudam, pra Confiança Total
+* Cada "linha" do nosso histórico (`historico_operacoes`) é uma tupla. Uma tupla é tipo um registro selado: uma vez que você anota as informações lá (data, tipo da operação, produto, detalhes), elas não podem ser alteradas. Isso é fundamental pro histórico, porque dá a segurança de que ninguém vai mexer nos registros do passado. É a integridade dos dados em primeiro lugar.
+
+#### Conjuntos (`set`): Garantindo que Cada Categoria Seja Única, Sem Repetição
+* Pras `categorias_disponiveis`, a gente foi de `set`. A lógica é simples: num conjunto, não tem essa de item repetido. Se a gente tentar adicionar "Eletrônicos" e já existir "Eletrônicos", ele simplesmente não duplica. Isso evita bagunça e garante que cada categoria é única. Fora que pra adicionar uma nova ou checar se ela já tá lá, é muito rápido.
+
+#### Listas Encadeadas (Simples): Uma Fila Flexível pros Alertas de Estoque Baixo
+* A `fila_alertas_reestoque` é onde a gente coloca os produtos que tão quase acabando e precisam de atenção. Usamos uma lista encadeada aqui pra mostrar como ela se adapta bem quando a gente precisa adicionar e remover itens direto – que é o caso dos alertas, que surgem e são resolvidos. No nosso esquema, o último produto que entrou na "fila" de alerta é o primeiro que a gente olha pra resolver. Pensa numa pilha de tarefas: você geralmente pega a que tá no topo, né? É essa a ideia.
