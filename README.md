@@ -54,7 +54,7 @@ Permite registrar novos produtos fornecendo nome, descrição e categoria.
 
 Os IDs dos produtos são gerados automaticamente pelo sistema (ex: P001, P002) para identificação única.
 
-Gerenciar Categorias de Produtos:
+#### Gerenciar Categorias de Produtos:
 
 Permite adicionar novas categorias de produtos dinamicamente durante o cadastro, caso a categoria informada não exista.
 
@@ -68,7 +68,7 @@ Cada produto cadastrado possui um controlo de estoque associado, que é iniciali
 
 O sistema mantém e atualiza a quantidade atual de cada produto disponível.
 
-Consultar Estoque de Produto Específico:
+#### Consultar Estoque de Produto Específico:
 
 Permite visualizar os detalhes completos (ID, nome, descrição, categoria) e a quantidade em estoque de um produto específico, pesquisando pelo seu ID.
 
