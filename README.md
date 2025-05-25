@@ -120,3 +120,7 @@ Para construir nosso sistema de almoxarifado, pensamos com carinho em como organ
 
 #### Listas Encadeadas (Simples): Uma Fila Flexível pros Alertas de Estoque Baixo
 * A `fila_alertas_reestoque` é onde a gente coloca os produtos que tão quase acabando e precisam de atenção. Usamos uma lista encadeada aqui pra mostrar como ela se adapta bem quando a gente precisa adicionar e remover itens direto – que é o caso dos alertas, que surgem e são resolvidos. No nosso esquema, o último produto que entrou na "fila" de alerta é o primeiro que a gente olha pra resolver. Pensa numa pilha de tarefas: você geralmente pega a que tá no topo, né? É essa a ideia.
+
+### Fluxograma do programa:
+
+* ![Fluxograma](./fluxograma.png)
