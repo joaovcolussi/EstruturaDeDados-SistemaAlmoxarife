@@ -123,4 +123,4 @@ Para construir nosso sistema de almoxarifado, pensamos com carinho em como organ
 
 ### Fluxograma do programa:
 
-* ![Fluxograma](./fluxograma.png)
+![Fluxograma](./fluxograma.png)
